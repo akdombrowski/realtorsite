@@ -8,11 +8,15 @@ import CardMedia from "@material-ui/core/CardMedia";
 import ky from "ky-universal";
 import { Typography } from "@material-ui/core";
 
+
+const WRAP_API_KEY = "JFp5Ky3rzhCVKDcJDOV7HvcthQqB5vj8";
 class Realtor extends Component {
   constructor(props) {
     super(props);
 
     this.state = { name: "Me", data: {} };
+    this.getData = this.getData.bind(this);
+    this.apiCall = this.apiCall.bind(this);
     this.getNames = this.getNames.bind(this);
     this.getPhones = this.getPhones.bind(this);
     this.getAddresses = this.getAddresses.bind(this);
@@ -21,26 +25,32 @@ class Realtor extends Component {
     this.getNumbers = this.getNumbers.bind(this);
     this.getImgs = this.getImgs.bind(this);
   }
-  componentDidMount() {
+
+  async apiCall(searchParams) {
+    const url = this.props.url;
+    const res = await ky
+      .post(url, {
+        body: searchParams,
+      })
+      .json();
+
+    //   console.log(res.data);
+    await this.setState({ data: res.data });
+    await console.dir(res);
+  }
+  getData() {
     const searchParams = new URLSearchParams();
     let pgNum = this.props.pageNumber;
     if (!pgNum) {
       pgNum = 3;
     }
     searchParams.set("page", pgNum);
-    searchParams.set("wrapAPIKey", "JFp5Ky3rzhCVKDcJDOV7HvcthQqB5vj8");
-    const response = async () => {
-      const res = await ky
-        .post(this.props.url, {
-          body: searchParams,
-        })
-        .json();
+    searchParams.set("wrapAPIKey", WRAP_API_KEY);
+    this.apiCall(searchParams);
+  }
 
-      //   console.log(res.data);
-      await this.setState({ data: res.data });
-      await console.dir(res);
-    };
-    response();
+  componentDidMount() {
+    this.getData();
   }
 
   getNames() {
@@ -198,31 +208,41 @@ class Realtor extends Component {
         <Grid container wrap="wrap">
           <Grid item container xs={2} height="100vh" justify="space-between">
             <Grid item>
-              <Typography>Image</Typography>
+              <Typography variant="h6" gutterBottom color="primary">
+                Image
+              </Typography>
             </Grid>
             {this.getImgs()}
           </Grid>
           <Grid item container xs={2} height="100vh" justify="space-between">
             <Grid item>
-              <Typography>Name</Typography>
+              <Typography variant="h6" gutterBottom color="primary">
+                Name
+              </Typography>
             </Grid>
             {this.getNames()}
           </Grid>
           <Grid item container xs={2} height="100vh" justify="space-between">
             <Grid item>
-              <Typography>Phone Number</Typography>
+              <Typography variant="h6" gutterBottom color="primary">
+                Phone Number
+              </Typography>
             </Grid>
             {this.getPhones()}
           </Grid>
           <Grid item container xs={2} height="100vh" justify="space-between">
             <Grid item>
-              <Typography>Address</Typography>
+              <Typography variant="h6" gutterBottom color="primary">
+                Address
+              </Typography>
             </Grid>
             {this.getAddresses()}
           </Grid>
           <Grid item container xs={2} height="100vh" justify="space-between">
             <Grid item>
-              <Typography>Group</Typography>
+              <Typography variant="h6" gutterBottom color="primary">
+                Group
+              </Typography>
             </Grid>
             {this.getGroups()}
           </Grid>
@@ -238,7 +258,9 @@ class Realtor extends Component {
             alignItems="center"
           >
             <Grid item>
-              <Typography>Website</Typography>
+              <Typography variant="h6" gutterBottom color="primary">
+                Website
+              </Typography>
             </Grid>
             {this.getWebsites()}
           </Grid>

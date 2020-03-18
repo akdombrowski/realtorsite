@@ -22,6 +22,7 @@ import styles from "assets/jss/nextjs-material-kit/pages/landingPage.js";
 import ProductSection from "pages-sections/LandingPage-Sections/ProductSection.js";
 import TeamSection from "pages-sections/LandingPage-Sections/TeamSection.js";
 import WorkSection from "pages-sections/LandingPage-Sections/WorkSection.js";
+import RealtorsSection from "pages-sections/LandingPage-Sections/RealtorsSection.js";
 
 const dashboardRoutes = [];
 
@@ -72,7 +73,7 @@ export default function RealtorsPage(props) {
       </Parallax>
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div className={classes.container}>
-          <Realtor />
+          <RealtorsSection />
           <ProductSection />
           <TeamSection />
           <WorkSection />
