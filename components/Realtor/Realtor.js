@@ -5,9 +5,14 @@ import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 
+import Image from "./Image.js";
+import Address from "./Address.js";
+import Group from "./Group.js";
+import Name from "./Name.js";
+import PhoneNumber from "./PhoneNumber.js";
+
 import ky from "ky-universal";
 import { Typography } from "@material-ui/core";
-
 
 const WRAP_API_KEY = "JFp5Ky3rzhCVKDcJDOV7HvcthQqB5vj8";
 class Realtor extends Component {
@@ -212,40 +217,50 @@ class Realtor extends Component {
                 Image
               </Typography>
             </Grid>
-            {this.getImgs()}
+
+            <Image data={this.state.data} />
           </Grid>
+
           <Grid item container xs={2} height="100vh" justify="space-between">
             <Grid item>
               <Typography variant="h6" gutterBottom color="primary">
                 Name
               </Typography>
             </Grid>
-            {this.getNames()}
+
+            <Name data={this.state.data} />
           </Grid>
+
           <Grid item container xs={2} height="100vh" justify="space-between">
             <Grid item>
               <Typography variant="h6" gutterBottom color="primary">
                 Phone Number
               </Typography>
             </Grid>
+
             {this.getPhones()}
           </Grid>
+
           <Grid item container xs={2} height="100vh" justify="space-between">
             <Grid item>
               <Typography variant="h6" gutterBottom color="primary">
                 Address
               </Typography>
             </Grid>
+
             {this.getAddresses()}
           </Grid>
+
           <Grid item container xs={2} height="100vh" justify="space-between">
             <Grid item>
               <Typography variant="h6" gutterBottom color="primary">
                 Group
               </Typography>
             </Grid>
+
             {this.getGroups()}
           </Grid>
+
           <Grid
             xs={2}
             item

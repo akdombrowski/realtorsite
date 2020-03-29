@@ -27,6 +27,7 @@ import SectionCompletedExamples from "pages-sections/Components-Sections/Section
 import SectionLogin from "pages-sections/Components-Sections/SectionLogin.js";
 import SectionExamples from "pages-sections/Components-Sections/SectionExamples.js";
 import SectionDownload from "pages-sections/Components-Sections/SectionDownload.js";
+import RealtorsSection from "pages-sections/LandingPage-Sections/RealtorsSection.js";
 
 import styles from "assets/jss/nextjs-material-kit/pages/components.js";
 
@@ -38,7 +39,7 @@ export default function Components(props) {
   return (
     <div>
       <Header
-        brand="NextJS Material Kit"
+        brand="Realtor Matchmaking"
         rightLinks={<HeaderLinks />}
         fixed
         color="transparent"
@@ -53,9 +54,9 @@ export default function Components(props) {
           <GridContainer>
             <GridItem>
               <div className={classes.brand}>
-                <h1 className={classes.title}>NextJS Material Kit.</h1>
+                <h1 className={classes.title}>Realtor Matchmaking</h1>
                 <h3 className={classes.subtitle}>
-                  A Badass Material Kit based on Material-UI and NextJS.
+                  Find the perfect realtor to help you find your dream home.
                 </h3>
               </div>
             </GridItem>
@@ -64,6 +65,7 @@ export default function Components(props) {
       </Parallax>
 
       <div className={classNames(classes.main, classes.mainRaised)}>
+        <RealtorsSection />
         <SectionBasics />
         <SectionNavbars />
         <SectionTabs />
